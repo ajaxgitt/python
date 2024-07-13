@@ -1,0 +1,44 @@
+{% extends 'application/baseInicio.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/homeInicio.css' %}">
+
+{% endblock %}
+
+
+
+
+
+{% block content %}
+<div class="imagenes">
+
+    <div id="container" class="container">
+        <h1>Vision por computadora</h1>
+        <h2>En  <span style="color: #47BFAF;">tiempo Real!</span></h2>
+        
+        <img id="video-stream" src="{% static 'img/login2.jpg' %}" alt="Streaming de video">
+
+        <div class="boton">
+            <button class="btn" href="#" id="iniciar">Comenzar</button>
+        </div>
+    </div>
+
+</div>
+<script>
+    const enlace = "{% url 'RfacialModelo' %}"
+    const enlace2 = "{% static 'img/login2.jpg' %}"
+</script>
+{% endblock %}
+
+
+
+
+
+
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{% static 'js/demo.js' %}"></script>
+
+{% endblock %}

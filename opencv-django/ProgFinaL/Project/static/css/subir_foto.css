@@ -1,0 +1,336 @@
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+
+
+.dropdown{
+    min-width: 15em;
+    position: relative;
+    margin: 2em;
+}
+
+.dropdown * {
+    box-sizing: border-box;
+}
+
+.select{
+    background: #2a2f3b;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px #2a2f3b solid;
+    border-radius: 0.5em;
+    padding: 1em;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.select-clicked{
+    border: 2px #26489a solid;
+    box-shadow: 0 0 0.8em #26489a;
+}
+
+.select:hover{
+    background: #323741;
+}
+
+.caret{
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid #fff;
+    transition: .3s;
+}
+
+.caret-rotate{
+    transform: rotate(180deg);
+}
+
+.menuu{
+    list-style: none;
+    padding: .2em .5em;
+    background: #323741;
+    border: 1px #363a43 solid;
+    box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.2);
+    border-radius: .5em;
+    position: absolute;
+    top: 3em;
+    left: 50%;
+    width: 100%;
+    transform: translateX(-50%);
+    opacity: 0;
+    display: none;
+    transition: 0.2s;
+    z-index: 1;
+}
+
+.menuu li{
+    padding: 0.7em 0.5em;
+    margin: 0.3em 0;
+    border-radius: 0.5em;
+    cursor: pointer;
+}
+
+.menuu li:hover{
+    background: #2a2d35;
+}
+
+.e{
+    background: #23242a;
+}
+
+.menu-open{
+    display: block;
+    opacity: 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.album-selector {
+    padding: 10px; /* Espaciado interno */
+    border: 1px solid #ccc; /* Borde */
+    border-radius: 5px; /* Esquinas redondeadas */
+    background-color: transparent; /* Color de fondo */
+}
+
+
+.album-label {
+    display: block; /* Asegura que el label ocupe una línea completa */
+    margin-bottom: 5px; /* Espaciado inferior */
+    color: white; /* Color del texto */
+}
+
+.album-dropdown {
+    width: 100%; /* Ancho completo del select */
+    padding: 10px; /* Espaciado interno */
+    text-align: center;
+    border: 1px solid #ccc; /* Borde */
+    border-radius: 35px; /* Esquinas redondeadas */
+    background-color: transparent; /* Color de fondo */
+    font-size: 16px; /* Tamaño de la fuente */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra */
+    
+}
+
+.album-dropdown {
+    color: white;
+}
+.album-dropdown:focus {
+    border-color: #007BFF; /* Color del borde cuando está enfocado */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Añade una sombra */
+}
+
+
+
+.drop-area{
+    margin-top: 50px;
+    border: 5px dashed #ddd;
+    height: 300px;
+    width: 500px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.drop-area .active{
+    background-color: #b8d4fe;
+    color: black;
+    border: 2px dashed #618ac9;
+
+}
+
+.drop-area h2{
+    font-size: 30px;
+    color: white;
+    font-weight: 500;
+}
+
+.drop-area span{
+    font-size: 25px;
+    color: white;
+}
+
+.drop-area button{
+    padding: 10px 20px;
+    border: 0;
+    font-size: 20px;
+    outline: none;
+    background-color: #47BFAF;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 15px;
+    border-radius: 35px;
+    
+}
+
+.drop-area button{
+    background-color:  transparent;
+    border: 1px solid white;
+    
+}
+
+.adf{
+    text-align: center;
+}
+
+.adf button{
+    margin-top: 20px;
+    width: 100%;
+    font-size: 20px;
+    border-radius: 35px;
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 10px;
+}
+
+.file-container{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border: solid 1px #ddd;
+}
+
+#preview{
+    margin-top: 10px;
+}
+
+
+@media screen and (max-width: 530px) {
+
+    .album-selector {
+        margin: auto; /* Espaciado superior e inferior */
+        padding: 10px; /* Espaciado interno */
+        border-radius: 5px; /* Esquinas redondeadas */
+        background-color: transparent; /* Color de fondo */
+        max-width: 100%; /* Ancho máximo del contenedor */
+        width: 100%;
+    }
+    
+    .album-label {
+        display: block; /* Asegura que el label ocupe una línea completa */
+        margin-bottom: 5px; /* Espaciado inferior */
+        font-weight: bold; /* Negrita */
+        color: white; /* Color del texto */
+    }
+    
+    .album-dropdown {
+        width: 100%; /* Ancho completo del select */
+        padding: 10px; /* Espaciado interno */
+        border: 1px solid #ccc; /* Borde */
+        border-radius: 5px; /* Esquinas redondeadas */
+        background-color: transparent; /* Color de fondo */
+        font-size: 16px; /* Tamaño de la fuente */
+        color: white; /* Color del texto */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra */
+    }
+    
+    .drop-area{
+        margin-top: 50px;
+        border: 5px dashed #ddd;
+        height: 150px;
+        width: 250px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    
+    .drop-area .active{
+        background-color: #b8d4fe;
+        color: black;
+        border: 2px dashed #618ac9;
+    
+    }
+    
+    .drop-area h2{
+        font-size: 15px;
+        color: white;
+        font-weight: 500;
+    }
+    
+    .drop-area span{
+        font-size: 15px;
+        color: white;
+    }
+    
+    .drop-area button{
+        padding: 10px 20px;
+        border: 1px solid white;
+        font-size: 10px;
+        outline: none;
+        background-color: transparent;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 15px;
+        border-radius: 35px;
+        
+    }
+    
+    
+    .adf{
+        text-align: center;
+    }
+    
+    .adf button{
+        margin-top: 20px;
+        width: 100%;
+        font-size: 10px;
+    }
+    
+    .file-container{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+        border: solid 1px #ddd;
+    }
+    
+    #preview{
+        margin-top: 10px;
+    }
+
+}

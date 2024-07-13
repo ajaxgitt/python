@@ -1,0 +1,41 @@
+{% extends 'application/baseInicio.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/homeInicio.css' %}">
+{% endblock %}
+<h1>holii</h1>
+{% block content %}
+<div class="imagenes">
+
+    <div id="container" class="container">
+        <h1>Bienvenid@</h1>
+        <h2>¡Nos gustaría <span style="color: #47BFAF;">conocerte mejor!</span></h2>
+        <p>Para empezar, necesitamos guardar tus rasgos faciales.</p>
+        <img id="video-stream" src="{% static 'img/1.jpg' %}" alt="Streaming de video">
+
+        <div class="boton">
+            <button class="btn" href="#" id="iniciar">Comenzar</button>
+            
+            <a href="{% url 'entrenarModelo' %}" class="btn " id="inicir"
+                style="background: transparent; color: rgb(255, 255, 255); text-decoration: none; border: 2px solid rgb(255, 255, 255);"
+                onmouseover="this.style.backgroundColor='transparent'; this.style.color='white';"
+                onmouseout="this.style.backgroundColor='transparent'; this.style.color='white';">
+                Siguiente
+            </a>
+        </div>
+    </div>
+
+
+</div>
+<script>
+    const enlace = "{% url 'recolectarDatos' %}"
+    const enlace2 = "{% static 'img/1.jpg' %}"
+</script>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/homeInicio.js' %}"></script>
+{% endblock %}

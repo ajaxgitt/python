@@ -1,0 +1,108 @@
+{% load static %}
+{% load allauth i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Register</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+   
+</head>
+<style>
+    body{
+        background-color: #ecececdb;
+    }
+</style>
+<body class="bg-gradient-primary">
+    <div class="container">
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-4 d-none d-lg-block bg-register-image">
+                        <img src="{% static 'img/registro.jpg' %}" alt="">
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">¡Crea una cuenta!</h1>
+                                <p>
+                                    {% blocktrans %}¿Ya tienes una cuenta? Entonces por favor <a href="{{ login_url }}">iniciar sesión</a>.{% endblocktrans %}
+                                </p>
+                                {% url 'account_signup' as action_url %}                               
+                            </div>
+                            <form class="user" method="post" action="/accounts/signup/">
+                                {% csrf_token %}
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" class="form-control form-control-user" name="username" placeholder="Nombre de Usuario" autocomplete="username" minlength="1" maxlength="150" required id="id_username"style="border-radius: 38px;">
+                                        {% if form.username.errors %}
+                                            {% for error in form.username.errors %}
+                                                <p class="text-danger">{{ error }}</p>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control form-control-user" name="email" placeholder="Correo electrónico" autocomplete="email" maxlength="320" id="id_email"style="border-radius: 38px;">
+                                    {% if form.email.errors %}
+                                        {% for error in form.email.errors %}
+                                            <p class="text-danger">{{ error }}</p>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="password" class="form-control form-control-user" name="password1" placeholder="Contraseña" autocomplete="new-password" required aria-describedby="id_password1_helptext" id="id_password1"style="border-radius: 38px;">
+                                        {% if form.password1.errors %}
+                                            {% for error in form.password1.errors %}
+                                                <p class="text-danger">{{ error }}</p>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="password" class="form-control form-control-user" name="password2" placeholder="Contraseña (de nuevo)" autocomplete="new-password" required id="id_password2"style="border-radius: 38px;">
+                                        {% if form.password2.errors %}
+                                            {% for error in form.password2.errors %}
+                                                <p class="text-danger">{{ error }}</p>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <hr>
+                                <button class="btn btn-outline-primary btn-user btn-block"style="border: 1px solid #4285F4; border-radius: 25px;">Registrarse</button>
+                                <hr>
+                                {% if SOCIALACCOUNT_ENABLED %}
+                                <a title="Google" href="/accounts/google/login/?process=login&amp;next=%2F" class="btn btn-google btn-user btn-block" style="border: 1px solid #4285F4; border-radius: 25px;">
+                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="LgbsSe-Bz112c" style="width: 24px; height: 24px;">
+                                        <g>
+                                            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path>
+                                            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path>
+                                            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path>
+                                            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path>
+                                            <path fill="none" d="M0 0h48v48H0z"></path>
+                                        </g>
+                                    </svg>
+                                    Iniciar sesión con Google
+                                </a>
+                                
+                                
+                                {% endif %}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap core JavaScript-->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

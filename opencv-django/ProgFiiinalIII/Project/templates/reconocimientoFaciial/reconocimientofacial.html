@@ -1,0 +1,24 @@
+
+
+{% block contend %}
+
+<section class="video-player">
+
+
+    
+    <img id="video-stream" src="{% url 'recolectarDatos' %}" alt="Streaming de video">
+
+</section>
+
+<section class="chat">
+    <h2>Chat en Vivo</h2>
+    <div id="chat-messages">
+        
+    </div>
+    <form id="chat-form">
+        <input type="text" id="message-input" placeholder="Escribe un mensaje...">
+        <button type="submit">Enviar</button>
+    </form>
+</section>
+
+{% endblock %}   

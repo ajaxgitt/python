@@ -1,0 +1,7 @@
+#primero importamos os en setings
+import os
+
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# AUTH_USER_MODEL = 'user.User'

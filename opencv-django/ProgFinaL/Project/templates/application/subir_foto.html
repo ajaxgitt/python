@@ -1,0 +1,121 @@
+{% extends 'application/baseInicio.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/subir_foto.css' %}">
+<link rel="stylesheet" href="{% static 'css/albun.css' %}">
+<style>
+    #preview {
+        display: flex;
+        flex-direction: row; /* Asegura que los elementos estén en fila */
+        overflow-x: auto;    /* Permite el desplazamiento horizontal */
+        white-space: nowrap; /* Evita que los elementos se envuelvan en la siguiente línea */
+        width: 500px; /* Ancho fijo, puedes ajustarlo según tus necesidades */
+         /* Alto fijo, puedes ajustarlo según tus necesidades */
+        border: 1px solid #ccc; /* Borde para visualizar el contenedor */
+    }
+    #preview img {
+            margin-right: 10px; /* Espacio entre las imágenes */
+        }
+            /* Estilos para la barra de desplazamiento en navegadores WebKit (Chrome, Safari) */
+#preview::-webkit-scrollbar {
+    height: 12px; /* Altura de la barra de desplazamiento */
+}
+
+#preview::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color de fondo de la pista de la barra de desplazamiento */
+}
+
+#preview::-webkit-scrollbar-thumb {
+    background: #888; /* Color del pulgar de la barra de desplazamiento */
+    border-radius: 10px; /* Radio del borde para redondear el pulgar */
+}
+
+#preview::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color del pulgar de la barra de desplazamiento al pasar el ratón */
+}
+
+/* Estilos para la barra de desplazamiento en Firefox */
+#preview {
+    scrollbar-width: thin; /* Grosor de la barra de desplazamiento */
+    scrollbar-color: #888 #f1f1f1; /* Color del pulgar y de la pista */
+}
+
+/* Estilos para la barra de desplazamiento en Edge y otros navegadores */
+#preview {
+    -ms-overflow-style: none; /* Oculta la barra de desplazamiento por defecto en Internet Explorer 10+ */
+}
+
+#preview::-webkit-scrollbar {
+    display: none; /* Oculta la barra de desplazamiento por defecto en Safari y Chrome */
+}
+
+/* Reemplazo de los estilos ocultos de la barra de desplazamiento para la mayoría de los navegadores */
+#preview {
+    overflow-y: hidden; /* Asegura que sólo la barra de desplazamiento horizontal sea visible */
+}
+    
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+
+{% if albums %}
+
+<form id="upload-form" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="album-selector">
+        <label for="album" class="album-label">Selecciona un álbum:</label>
+        <select style="background-color: rgb(0, 0, 0,0.9);"  id="album" name="album" class="album-dropdown">
+            {% for album in albums %}
+            <option value="{{ album.id }}">{{ album.nombre }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="drop-area">
+        <h2>Arrastra y suelta las imágenes</h2>
+        <span>O</span>
+        <button type="button" onclick="document.getElementById('input-file').click();">Selecciona tus archivos</button>
+        <input type="file" id="input-file" hidden multiple>
+    </div>
+    <div id="preview">
+
+    </div>
+    <div class="adf">
+        <button type="submit">Subir Fotos</button>
+    </div>
+
+</form>
+{% else %}
+
+
+<div id="opciones">
+    <a style="text-align: center;"  href="#" class="hero__cta">necesitas crear un album primero!<br>       +Crear Album!</a>
+</div>
+<section class="modal">
+    <div class="modal__container">
+        <h2 class="modal__title">¡Por favor necesitamos estos datos!</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ albumFormulario.as_p }}
+            <button type="submit">Crear Álbum</button> <a href="#" class="modal__close">Salir</a>
+        </form>
+    </div>
+</section>
+
+
+
+
+{% endif %}
+
+
+{% endblock %}
+
+
+{% block scripts %}
+<script src="{% static 'js/adf.js' %}"></script>
+<script src="{% static 'js/subir_foto.js' %}"></script>
+<script src="{% static 'js/album.js' %}"></script>
+{% endblock %}

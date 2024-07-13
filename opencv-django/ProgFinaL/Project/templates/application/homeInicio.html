@@ -1,0 +1,57 @@
+{% extends 'application/baseInicio.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/homeInicio.css' %}">
+
+{% endblock %}
+
+
+
+
+
+{% block content %}
+<div class="imagenes">
+    {% if mensaje %}
+    <script>
+        // Muestra un mensaje de alerta cuando se carga la página
+        window.onload = function () {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "{{ mensaje }}",
+            });
+        };
+
+    </script>
+    {% endif %}
+
+    <div id="container" class="container">
+        <h1>Bienvenid@</h1>
+        <h2>¡Nos gustaría <span style="color: #47BFAF;">conocerte mejor!</span></h2>
+        <p>Para empezar, necesitamos guardar tus rasgos faciales.</p>
+        <img id="video-stream" src="{% static 'img/1.jpg' %}" alt="Streaming de video">
+
+        <div class="boton">
+            <button class="btn" href="#" id="iniciar">Comenzar</button>
+        </div>
+    </div>
+
+</div>
+<script>
+    const enlace = "{% url 'recolectarDatos' %}"
+    const enlace2 = "{% static 'img/1.jpg' %}"
+    const entrenarModelo = "{% url 'entrenarModelo' request.user.id %}"
+</script>
+{% endblock %}
+
+
+
+
+
+
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{% static 'js/homeInicio.js' %}"></script>
+{% endblock %}

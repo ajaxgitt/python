@@ -1,0 +1,58 @@
+{% extends 'application/baseInicio.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+<link rel="stylesheet" href="{% static 'css/mi_perfil.css' %}">
+
+{% endblock %}
+
+{% block content %}
+<section class="perfil-usuario">
+    <div class="contenedor-perfil">
+        <div class="portada-perfil" style="background-image: url('{{ user.profile.cover_photo.url }}');">
+            <div class="sombra"></div>
+            
+            <div class="avatar-perfil">
+                {% if foto_perfil %}
+                <img src="{{ foto_perfil }}" alt=""> 
+                {% else %}
+                <img src="{{ request.user.picture.url }}" alt="no tiene"> 
+                {% endif %}
+                <a href="#" class="cambiar-foto">
+                    <i class="fas fa-camera"></i> 
+                    <span>Cambiar foto</span>
+                </a>
+            </div>
+            <div class="datos-perfil">
+                <h4 class="titulo-usuario"> @{{request.user.username}} </h4>
+                <p class="bio-usuario">{{request.user.email}}</p>
+                <ul class="lista-perfil">
+                    <li>35 Seguidores</li>
+                    <li>7 Seguidos</li>
+                    <li>32 Publicaciones</li>
+                </ul>
+            </div>
+            <div class="opcciones-perfil">
+                <button type="">Cambiar portada</button>
+                <button type=""><ion-icon name="create-outline"></ion-icon></button>
+            </div>
+        </div>
+        <div class="menu-perfil">
+            <ul>
+                <li><a href="#" title="">Grupos </a></li>
+                <li><a href="#" title=""><i class="icono-perfil fas fa-info-circle"></i> Informacion {{ user.bio}} </a></li>
+                <li><a href="#" title=""><i class="icono-perfil fas fa-grin"></i> Amigos {{friends.count}} </a></li>
+                <li><a href="#" title=""><i class="icono-perfil fas fa-camera"></i> Fotos</a></li>
+            </ul>
+        </div>
+        
+    </div>
+</section>
+{% endblock %}
+
+
+{% block scripts %}
+
+{% endblock %}

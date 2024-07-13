@@ -1,0 +1,50 @@
+{% extends 'application/baseInicio.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/subir_foto.css' %}">
+
+{% endblock %}
+
+
+{% block content %}
+
+
+
+
+<form id="upload-form" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="album-selector">
+        <label for="album" class="album-label">Selecciona un álbum:</label>
+        <select style="background-color: rgb(0, 0, 0,0.9);"  id="album" name="album" class="album-dropdown">
+            {% for album in albums %}
+            <option value="{{ album.id }}">{{ album.nombre }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+
+    
+
+    <div class="drop-area">
+        <h2>Arrastra y suelta las imágenes</h2>
+        <span>O</span>
+        <button type="button" onclick="document.getElementById('input-file').click();">Selecciona tus archivos</button>
+        <input type="file" id="input-file" hidden multiple>
+    </div>
+    <div id="preview">
+
+    </div>
+    <div class="adf">
+        <button type="submit">Subir Fotos</button>
+    </div>
+
+</form>
+
+{% endblock %}
+
+
+{% block scripts %}
+<script src="{% static 'js/adf.js' %}"></script>
+<script src="{% static 'js/subir_foto.js' %}"></script>
+{% endblock %}

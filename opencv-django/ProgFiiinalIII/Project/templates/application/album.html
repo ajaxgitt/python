@@ -1,0 +1,53 @@
+{% extends 'application/baseInicio.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/albun.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock %}
+
+
+{% block content %}
+
+<div id="opciones">
+    <a href="#" class="hero__cta">+Crear Album!</a>
+</div>
+
+
+<section class="modal">
+    <div class="modal__container">
+        <h2 class="modal__title">¡Por favor necesitamos estos datos!</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ albumFormulario.as_p }}
+            <button type="submit">Crear Álbum</button> <a href="#" class="modal__close">Salir</a>
+        </form>
+    </div>
+</section>
+
+<div class="card-container">
+    {% for album_id, data in diccionario_fotos.items%}
+    <a href="{% url 'verFotos' album_id %}">
+        <div class="card">
+            <img src="{{ data.imagen_url  }}" alt="Imagen">
+            <div class="card-content">
+                <h1>{{ data.album_nombre }}</h1>
+                
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+<script src="https://unpkg.com/scrollreveal"></script>
+<script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+<script src="{% static 'js/album.js' %}"></script>
+
+{% endblock %}

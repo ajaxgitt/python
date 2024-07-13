@@ -1,0 +1,58 @@
+{% extends 'application/baseInicio.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/galeria.css' %}">
+{% endblock %}
+
+{% block content %}
+<div id="opciones">
+    
+    {% if albumes %}
+    {% for i in albumes %}
+    <a style="text-decoration: none;" href="{% url 'verFotos' i.id %}"><span>{{ i.nombre }} </span></a>
+    {% endfor %}
+    {% else %}
+    <span style="background: #47bfaf;">+ Agra tus Al...</span>
+    {% endif %}
+    <a style="text-decoration: none;" href="#"><span style="background: #47bfaf;">fotos en las que apareces </span></a>
+</div>
+
+
+
+<div>
+    <section id="galeria">
+        {% if foto %}
+        {% else %}
+        <div class="card-container">
+            <a href="#">
+                <div class="card">
+                    <img src="{% static 'img/registro.jpg' %}" alt="">
+                    <div class="card-content">
+                        <h1 style="text-decoration: none; color: white;" >No tienes fotos en este albun todavia</h1>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endif %}
+        {% for i in foto %}
+        <img src="{{ i.imagen.url }}" alt="{{i.titulo}}">
+        
+        {% endfor %}
+    </section>
+    <section id="contenedor-principal">
+        <div id="contenedor-interno">
+            <img id="img-activa" src="{%static 'img/1.jpg'%}" alt="imagen de galeria">
+            <span id="btn-cierra" type="button"><i class="fa-solid fa-x"></i></span>
+            <span id="btn-retocede" type="button"><i class="fa-solid fa-chevron-left"></i></span>
+            <span id="btn-adelanta" type="button"><i class="fa-solid fa-angle-right"></i></span>
+
+        </div>
+    </section>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/galeria.js' %}"></script>
+{% endblock %}

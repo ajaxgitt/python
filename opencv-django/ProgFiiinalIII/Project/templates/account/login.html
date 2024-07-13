@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Login</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    
+</head>
+
+<style>
+    body{
+        background-color: #ecececdb;
+    }
+</style>
+
+<body class="bg-gradient-primary">
+
+    <div class="container">
+
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+            <div class="col-xl-10 col-lg-12 col-md-9">
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-5 d-none d-lg-block bg-login-image">
+                                <img src="{% static 'img/login.jpg' %}" alt="">
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">¡Bienvenido de nuevo!</h1>
+                                    </div>
+                                    {% load i18n %}
+                                    {% load allauth account %}
+                                    {% block head_title %}
+                                    {% endblock head_title %}
+                                    <p>
+                                        {% blocktrans %}Si aún no ha creado una cuenta, por favor
+                                        <a href="{{ signup_url }}">regístrate</a> primero{% endblocktrans %}
+                                    </p>
+                                    {% url 'account_login' as login_url %}
+                                    <form class="user" method="POST" action="{% url 'account_login' %}">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user" name="login"
+                                                placeholder="Username or email" autocomplete="email" required=""
+                                                id="id_login" style="border-radius: 38px;">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control form-control-user"
+                                                name="password" placeholder="Password" autocomplete="current-password"
+                                                required="" aria-describedby="id_password_helptext" id="id_password"style="border-radius: 38px;">
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox small">
+                                                <a href="{% url 'account_reset_password' %}">Forgot your password?</a>
+                                            </div>
+                                        </div>
+                                        {% if form.errors %}
+                                        <div class="alert alert-danger" role="alert">
+                                            {% trans "Por favor, corrija los siguientes errores:" %}
+                                            <ul>
+                                                {% for field, errors in form.errors.items %}
+                                                {% for error in errors %}
+                                                <p>{{ error }}</p>
+                                                {% endfor %}
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                        {% endif %}
+                                        <button class="btn btn-outline-primary btn-user btn-block" style="border: 1px solid #4285F4; border-radius: 25px;">Login</button>
+                                        <hr>
+                                        {% if SOCIALACCOUNT_ENABLED %}
+                                        <a title="Google" href="/accounts/google/login/?process=login&amp;next=%2F" class="btn btn-google btn-user btn-block" style="border: 1px solid #4285F4; border-radius: 25px;">
+                                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="LgbsSe-Bz112c" style="width: 24px; height: 24px;">
+                                                <g>
+                                                    <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path>
+                                                    <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path>
+                                                    <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path>
+                                                    <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path>
+                                                    <path fill="none" d="M0 0h48v48H0z"></path>
+                                                </g>
+                                            </svg>
+                                            Iniciar sesión con Google
+                                        </a>
+                                        {% endif %}
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

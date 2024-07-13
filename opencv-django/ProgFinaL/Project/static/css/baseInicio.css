@@ -1,0 +1,412 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+:root {
+    --color-barra-lateral: rgb(26, 28, 35);
+
+    --color-texto: #47BFAF;
+    --color-texto-menu: #FFFFFF;
+
+    --color-menu-hover: #2B2D35;
+    --color-menu-hover-texto: #FFFFFF;
+
+    --color-boton:  #47BFAF; /* Verde */
+    --color-boton-texto: #FFFFFF;
+
+    --color-linea: #333333;
+
+    --color-switch-base: #40ff00;
+    --color-switch-circulo: #FFFFFF;
+
+    --color-scroll: #333333;
+    --color-scroll-hover: #4D4D4D;
+
+    --color-buscador: #1A1C23;
+    --color-place: #999999;
+}
+
+
+.dark-mode {
+    
+    --color-barra-lateral: #F5F5F5;
+
+    --color-texto: #333333;
+    --color-texto-menu: #666666;
+
+    --color-menu-hover: #E0E0E0;
+    --color-menu-hover-texto: #333333;
+
+    --color-boton: #47BFAF ; /* Turquesa */
+    --color-boton-texto: #FFFFFF;
+
+    --color-linea: #CCCCCC;
+
+    --color-switch-base: #818181;
+    --color-switch-circulo: #FFFFFF;
+
+    --color-scroll: #CCCCCC;
+    --color-scroll-hover: #999999;
+
+    --color-buscador: #F5F5F5;
+    --color-place: #666666;
+}
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Outfit", sans-serif;
+    
+}
+body{
+    height: 100vh;
+    width: 100%;
+    background-color:rgb(25, 31, 54) ;
+    margin: 0;
+    padding: 0;
+    
+}
+
+#particles-js{
+    background: rgb(1, 10, 17);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    z-index: -1;
+} 
+
+.my-confirm-button-class {
+    background-color: #28a745; /* Color de fondo del botón de confirmación */
+    color: #fff; /* Color del texto del botón de confirmación */
+    border: none; /* Sin borde en el botón de confirmación */
+    border-radius: 35px; /* Borde redondeado del botón de confirmación */
+    padding: 10px 20px; /* Relleno del botón de confirmación */
+    font-size: 14px; /* Tamaño de fuente del botón de confirmación */
+    cursor: pointer; /* Cambiar el cursor al pasar sobre el botón de confirmación */
+    margin-left: 5px;
+    transition: .5s ease; /* Transición suave de color */
+
+}
+
+.my-cancel-button-class {
+    background-color: #dc3545; /* Color de fondo del botón de cancelación */
+    color: #fff; /* Color del texto del botón de cancelación */
+    border: none; /* Sin borde en el botón de cancelación */
+    border-radius: 35px; /* Borde redondeado del botón de cancelación */
+    padding: 10px 20px; /* Relleno del botón de cancelación */
+    font-size: 14px; /* Tamaño de fuente del botón de cancelación */
+    cursor: pointer; /* Cambiar el cursor al pasar sobre el botón de cancelación */
+    margin-right: 5px;
+    transition: .5s ease;
+}
+
+
+.my-confirm-button-class:hover {
+    background-color: #218838; 
+    color: white;
+    font-size: 1.2rem;
+}
+
+.my-cancel-button-class:hover {
+    color: white;
+    font-size: 1.2rem;
+}
+
+.menu{
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: var(--color-boton);
+    color: var(--color-boton-texto);
+    right: 15px;
+    top: 15px;
+    z-index: 100;
+    
+}
+
+
+
+.barra-lateral{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 250px;
+    height: 100%;
+    overflow: hidden;
+    padding: 20px 15px;
+    background-color: var(--color-barra-lateral);
+    transition: width 0.5s ease, background-color 0.3s ease, left 0.5s ease;
+    z-index: 50;
+}
+.mini-barra-lateral{
+    width: 80px;
+}
+
+.barra-lateral  span{
+    width: 100px;
+    white-space: nowrap;
+    font-size: 18px;
+    text-align: left;
+    opacity: 1;
+    transition: opacity 0.5s ease, width 0.5s ease;
+}
+.barra-lateral  span.oculto{
+    opacity: 0;
+    width: 0;
+}
+.barra-lateral .nombre-pagina{
+    width: 100%;
+    height: 45px;
+    color: var(--color-texto);
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.barra-lateral .nombre-pagina ion-icon{
+    min-width: 50px;
+    font-size: 40px;
+    color: #47BFAF;
+}
+.barra-lateral .nombre-pagina span{
+    margin-left: 5px;
+    font-size: 25px;
+    color: white;
+}
+
+
+
+.barra-lateral .boton{
+    width: 100%;
+    height: 45px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--color-boton);
+    color: var(--color-boton-texto);
+}
+
+.barra-lateral .boton ion-icon{
+    min-width: 50px;
+    font-size: 25px;
+}
+/*----->menu opciones*/
+.barra-lateral .navegacion {
+    margin-top: 10px;
+    height: 100%;
+    overflow-y: scroll; 
+    overflow-x: hidden;
+}
+
+.barra-lateral .navegacion::-webkit-scrollbar {
+    width: 0;
+}
+
+.barra-lateral .navegacion::-webkit-scrollbar-thumb {
+    background-color: var(--color-scroll);
+    border-radius: 35px;
+}
+
+.barra-lateral .navegacion::-webkit-scrollbar:hover {
+    background-color: var(--color-scroll-hover);
+}
+
+.barra-lateral .navegacion li{
+    list-style: none;
+    position: relative;
+    display: flex;
+    margin-bottom: 5px;
+}
+.barra-lateral .navegacion a{
+    width: 100%;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 35px;
+    color: var(--color-texto-menu);
+}
+.fondo{
+    background-color: #2B2D35;
+    border-radius: 35px;
+}
+.barra-lateral .navegacion a:hover{
+    background-color: var(--color-menu-hover);
+    color: var(--color-menu-hover-texto);
+    
+}
+
+.barra-lateral .navegacion ion-icon{
+    min-width: 50px;
+    font-size: 20px;
+    color: #47BFAF;
+}
+.barra-lateral .navegacion .badge {
+    position: absolute;
+    right: 25px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 4px 6px;
+    font-size: 12px;
+}
+
+
+.barra-lateral .linea {
+    width: 100%;
+    height: 1px;
+    margin-top: 15px;
+    background-color: var(--color-linea);
+}
+/*------modo oscuro-----*/
+
+.barra-lateral .modo-oscuro{
+    width: 100%;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.barra-lateral .modo-oscuro .info{
+    width: 150px;
+    height: 45px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    color:  var(--color-texto-menu);
+}
+.barra-lateral .modo-oscuro ion-icon{
+    width: 50px;
+    font-size: 20px;
+}
+.barra-lateral .modo-oscuro .switch{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 50px;
+    height: 45px;
+    cursor: pointer;
+}
+.barra-lateral .modo-oscuro .base{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 35px;
+    height: 20px;
+    background-color: var(--color-switch-base);
+    border-radius: 50px;
+}
+.barra-lateral .modo-oscuro .circulo{
+    position: absolute;
+    width: 18px;
+    height: 90%;
+    background-color: var(--color-switch-circulo);
+    border-radius: 50%;
+    left: 2px;
+    transition: left 0.5s ease;
+}
+.barra-lateral .modo-oscuro .circulo.prendido{
+    left: 15px;
+}
+/*--usuario--*/
+
+.barra-lateral .usuario{
+    width: 100%;
+    display: flex;
+}
+
+.barra-lateral .usuario img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover; /* Esto evita la deformación */
+    border-radius: 50%; /* Esto crea un borde redondo */
+}
+
+
+.barra-lateral .usuario .info-usuario{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--color-texto); 
+    overflow: hidden;
+}
+.barra-lateral .usuario .nombre-email{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 5px;
+}
+.barra-lateral .usuario .nombre{
+    font-size: 15px;
+    font-weight: 600;
+}
+.barra-lateral .usuario .email{
+    font-size: 13px;
+}
+.barra-lateral .usuario ion-icon{
+    font-size: 20px;
+}
+
+
+
+main{
+    
+    margin-left: 250px;
+    padding: 20px;
+    transition: margin-left 0.5s  ease;
+    
+    
+}
+main.min-main{
+    margin-left: 80px;
+}
+
+
+
+
+
+/*-----medi----*/
+
+@media (max-height:660px){
+    .barra-lateral .nombre-pagina{
+        margin-bottom: 5px;
+    }
+    .barra-lateral .modo-oscuro{
+        margin-bottom: 3px;
+    }
+}
+
+@media (max-width: 660px){
+    .barra-lateral{
+        position: fixed;
+        left: -250px;
+    }
+    .max-barra-lateral{
+        left: 0;
+    }
+    .menu{
+        display: flex;
+    }
+    .menu ion-icon:nth-child(2){
+        display: none;
+    }
+    main{
+        margin-left: 0;
+    }
+    main.min-main{
+        margin-left: 0;
+    }
+}
+

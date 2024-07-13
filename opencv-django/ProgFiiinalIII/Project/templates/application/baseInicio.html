@@ -1,0 +1,185 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bienvenido</title>
+    {% block head %}
+    {% endblock %}
+    <link rel="stylesheet" href="{% static 'css/baseInicio.css' %}">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+
+</head>
+<body>
+    <div id="particles-js"></div>
+<div class="menu">
+    <ion-icon   name="menu-outline"></ion-icon>
+    <ion-icon name="close-outline"></ion-icon>
+</div>
+    <div class="barra-lateral ">
+        <div>
+            <div class="nombre-pagina">
+                <ion-icon id="happy" name="logo-react"></ion-icon>
+                <span>Rfa<span style="color: #47BFAF;">Fotos</span></span>
+            </div>
+        </div>
+        <nav class="navegacion">
+            <ul>
+                <li>
+                    <a id="home" href="{% url 'homeInicio' %}" class="abc">
+                        <ion-icon name="home-outline"></ion-icon>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a id="galery" href="{% url 'galeria' %}" class="abc">
+                        <ion-icon name="images-outline"></ion-icon>
+                        <span>galeria</span>
+                    </a>
+                </li>
+                <li>
+                    <a id="album" href="{% url 'album' %}"class="abc">
+                        <ion-icon name="albums-outline"></ion-icon>
+                        <span>Albun</span>
+                    </a>
+                    
+                </li>
+                <li>
+                    <a id="explorar" href="{% url 'subir_foto' %}" class="abc">
+                        <ion-icon name="cloud-upload-outline"></ion-icon>
+                        <span>Subir Fotos</span>
+                    </a>
+                    
+                </li>
+                <li>
+                    <a id="favoritos" href="{% url 'buscandoSimilitudes' %}" class="abc">
+                        <ion-icon name="star-outline"></ion-icon>
+                        <span>Favoritos</span>
+                    </a>
+                </li>
+                <li>
+                    <a id="carpeta_privada" href="{% url 'carpeta_privada' %}"class="abc">
+                        <ion-icon name="document-lock-outline"></ion-icon>
+                        <span>Capeta privada</span>
+                    </a>
+                </li>
+                <li>
+                    <a id="configuraciones" href="{% url 'configuraciones' %}"class="abc">
+                        <ion-icon name="settings-outline"></ion-icon>
+                        <span>Configuraciones</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" onclick="confirmLogout()">
+                        <ion-icon name="log-out-outline"></ion-icon>
+                        <span>Cerrar Sesión</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div>
+            <div class="linea"></div>
+        <div class="modo-oscuro">
+            <div class="info">
+
+            </div>
+            <div class="switch">
+            </div>
+        </div>
+        <div class="usuario">
+            <a href="{% url 'mi_perfil' request.user.id %}">
+                {% if foto_perfil %}
+                <img src="{{ foto_perfil }}" alt=""> 
+                {% else %}
+                <img src="{{ request.user.picture.url }}" alt="no tiene"> 
+                {% endif %}
+            </a>
+            <div class="info-usuario">
+                <div class="nombre-email">
+                    <span class="nombre"> {{request.user.username}} </span>
+                    <span class="email"> {{ request.user.email}} </span>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    {% block conten %}
+    {% endblock %} 
+
+    <main>
+        {% block content %}
+        {% endblock %} 
+    </main>
+    <script>
+    function confirmLogout() {
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: "my-confirm-button-class",
+            cancelButton: "my-cancel-button-class"
+        },
+        buttonsStyling: false
+    });
+
+    
+
+    swalWithBootstrapButtons.fire({
+        title: "Cerrar Sesión",
+        text: "¿Estás seguro de que quieres cerrar sesión?",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonText: "Sí, cerrar sesión",
+        cancelButtonText: "Cancelar",
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = "{% url 'account_logout' %}";
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+            swalWithBootstrapButtons.fire({
+                title: "Cancelado",
+                text: "No se ha cerrado sesión.",
+                icon: "info"
+            });
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', (e) => {
+    const links = document.querySelectorAll('.abc')
+    const savelinkId = localStorage.getItem('selectedLinkId')
+    if (savelinkId) {
+        const savelink = document.getElementById(savelinkId)
+        if (savelink) {
+            savelink.classList.add('fondo')
+        }
+    }
+    links.forEach(link => {
+        link.addEventListener('click', () => {
+            localStorage.setItem('selectedLinkId', link.id)
+        })
+    })
+})
+
+    </script>
+    <script src="{% static 'js/particles.min.js' %}"></script>
+    
+    <script src="{% static 'js/graficos.js' %}"></script>
+    
+
+
+
+
+    <script src="{% static 'js/baseIndex.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>    
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    {% block scripts %}
+
+    {% endblock %}
+
+</body>
+</html>
+
